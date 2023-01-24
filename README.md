@@ -1,4 +1,4 @@
 # ln_calculator
 Calculadora de evoluções do Love Nikki.
 
-Roupas e acessorios
+Roupas e acessórios
