@@ -8,18 +8,21 @@
     </head>
     <body>
         <div class="container">
-            <form class="justify-content-center">
-                <div class="row">
+            <div class="text-center mb-3 mt-5">
+                <h1>Evoluções</h1>
+            </div>
+            <form>
+                <div class="row justify-content-center mb-3">
                     <div class="col-2">
                         <label for="epic">Epic</label>
-                        <input type="text" id="epic" class="form-control" placeholder="Epic">
+                        <input type="text" id="epic" class="form-control" placeholder="Epic" value="1">
                     </div>
                     <div class="col-2">
                         <label for="rare">Rare</label>
                         <input type="text" id="rare" class="form-control" placeholder="Rare">
                     </div>
                 </div>
-                <div class="row">
+                <div class="row justify-content-center mb-3">
                     <div class="col-2">
                         <label for="recolor">Recolor</label>
                         <input type="text" id="recolor" class="form-control" placeholder="Recolor">
@@ -27,15 +30,63 @@
                     <div class="col-2">
                         <label for="tipo">Tipo</label>
                         <select name="tipo" id="tipo" class="form-control">
-                            <option value="4">Base - 4</option>
-                            <option value="6">Base - 6</option>
+                            <option value="1">Base - 6</option>
+                            <option value="2">Base - 4</option>
                         </select>
                     </div>
                 </div>
-                <div>
-                    <button type="button" class="btn btn-primary">Calc</button>
+                <div class="text-center mb-3">
+                    <button type="button" class="btn btn-primary" onclick="calc()">Calc</button>
                 </div>
             </form>
-        </div>  
+
+            <div class="text-center">
+                <h1>Resultados</h1>
+            </div>
+
+            <div class="row justify-content-center mb-3">
+                <div class="col-2">
+                    <label for="base">Base</label>
+                    <input type="text" id="base" class="form-control" disabled>
+                </div>
+                <div class="col-2">
+                    <label for="baseRec">Recolor</label>
+                    <input type="text" id="baseRec" class="form-control" disabled>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function calc() {
+                let totalItensBase;
+                let totalItensBaseRecolor;
+                let epic = parseInt(document.getElementById("epic").value);
+                let qtaRecolor = parseInt(document.getElementById("recolor").value) ?? 0;
+                let base;
+                let rare;
+                let qtaItensRecolor;
+                let tipoEvo = parseInt(document.getElementById("tipo").value);
+
+                if(tipoEvo == 1) {
+                    base = 5;
+                    rare = 4;
+                    qtaItensRecolor = 15;
+                }
+
+                if(tipoEvo == 2) {
+                    base = 3;
+                    rare = 3;
+                    qtaItensRecolor = 6;
+                }
+
+                totalItensBase = (rare * base) + 1
+                totalItensBase = totalItensBase * epic
+                document.getElementById("base").value = totalItensBase
+
+                totalItensBaseRecolor = totalItensBase + (qtaRecolor * qtaItensRecolor)
+                document.getElementById("baseRec").value = totalItensBaseRecolor
+
+            }
+        </script>
     </body>
 </html>
